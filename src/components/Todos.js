@@ -56,6 +56,31 @@ class Todos extends React.Component {
                                 </Col>
                             </Form.Row>
                         </Form>
+                        <Row>
+                            <Col>
+                                <Table hover>
+                                    <tbody>
+                                        {
+                                            this.props.list.map(elem => (
+                                                <tr className="list-style" key={elem.id}>
+                                                    <td style={{ width: '5%' }}>
+                                                        <input type="checkbox"
+                                                            defaultChecked={elem.completed}
+                                                            required={true}
+                                                            onClick={() => this.handleComplete(elem.id)}
+                                                        />
+                                                    </td>
+                                                    <td  style={{ width: '65%' }}>{elem.title}</td>
+                                                    <td style={{ width: '10%' }}>{ elem.completed ? <Badge pill className="custom-badge" variant='success'> completed </Badge> : null } </td>
+                                                    <td style={{ width: '10%' }}><Button variant="outline-primary" onClick={()=>this.handleEdit(elem)}>Edit</Button></td>
+                                                    <td style={{ width: '10%' }}><Button variant="outline-primary" onClick={()=>this.handleDelete(elem.id)}>Delete</Button></td>
+                                                </tr>
+                                            ))
+                                        }
+                                    </tbody>
+                                </Table>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </div>
@@ -64,4 +89,9 @@ class Todos extends React.Component {
 };
 
 
-export default connect(null, actions)(Todos);
+const mapStateToProps = state => {
+  return {
+    list: state.todoslist.todos
+  }
+}
+export default connect(mapStateToProps, actions)(Todos);
