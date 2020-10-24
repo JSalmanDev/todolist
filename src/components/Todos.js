@@ -11,29 +11,38 @@ class Todos extends React.Component {
         this.state = {
             title: '',
             invaid: false,
+            objectToEdit: null
         }
     }
 
     addTodo = async (e) => {
         e.preventDefault();
         
-        let { title } = this.state;
+        let { title, objectToEdit } = this.state;
         
         if (!title && title.trim().length <= 0) {
             this.setState({ invalid: true });
             return;
         }
 
-        await this.props.addTodo(title);
+        if (objectToEdit) {
+            await this.props.editTodo(objectToEdit.id, title);
+        } else {
+            await this.props.addTodo(title);
+        }
         
-        this.setState({ title: '' });
+        this.setState({ title: '', objectToEdit: null });
     }
 
     
     handleComplete = (id) => {
       this.props.completeTodo(id);
     }
-    
+
+    handleEdit = (elem) => {
+      this.setState({ objectToEdit: elem, title: elem.title });
+    }
+
     handleDelete = (id) => {
       this.props.deleteTodo(id);
     }
