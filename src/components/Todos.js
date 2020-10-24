@@ -34,6 +34,10 @@ class Todos extends React.Component {
       this.props.completeTodo(id);
     }
     
+    handleDelete = (id) => {
+      this.props.deleteTodo(id);
+    }
+  
     render() {
         return (
             <div className='container'>
