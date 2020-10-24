@@ -30,6 +30,10 @@ class Todos extends React.Component {
     }
 
     
+    handleComplete = (id) => {
+      this.props.completeTodo(id);
+    }
+    
     render() {
         return (
             <div className='container'>
