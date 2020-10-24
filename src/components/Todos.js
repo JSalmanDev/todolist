@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col, Form, Button, Badge, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/TodosAction';
+import { todolistFilters } from '../store/actions/TodosAction';
 
 class Todos extends React.Component {
 
@@ -116,9 +117,24 @@ class Todos extends React.Component {
 };
 
 
-const mapStateToProps = state => {
-  return {
-    list: state.todoslist.todos
+const getTodoList = (todos, filter) => {
+  switch(filter) {
+      case todolistFilters.SHOW_ALL:
+          return todos;
+      case todolistFilters.SHOW_ACTIVE:
+          return todos.filter(t => !t.completed);
+      case todolistFilters.SHOW_COMPLETED:
+          return todos.filter(t => t.completed);
+      default: 
+          throw new Error('unknown filter' + filter);            
   }
 }
+
+const mapStateToProps = state => {
+  return {
+      list: getTodoList(state.todoslist.todos, state.todolistFilter),
+      selectedFilter: state.todolistFilter
+  }
+}
+
 export default connect(mapStateToProps, actions)(Todos);
