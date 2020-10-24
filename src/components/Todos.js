@@ -98,6 +98,16 @@ class Todos extends React.Component {
                                 </Table>
                             </Col>
                         </Row>
+                        <Row>
+                          <Col>
+                              <h6>SHOW:</h6>
+                              <div>
+                                  <span className={ this.props.selectedFilter && this.props.selectedFilter == 'SHOW_ALL' ? `badge badge-secondary filter-btn filter-active` : 'badge badge-secondary filter-btn' } onClick={(e)=> this.props.setTodoListFilter('SHOW_ALL')}>ALL</span>
+                                  <span className={this.props.selectedFilter && this.props.selectedFilter == 'SHOW_ACTIVE' ? `badge badge-secondary filter-btn filter-active` : 'badge badge-secondary filter-btn'} onClick={(e)=> this.props.setTodoListFilter('SHOW_ACTIVE')}>ACTIVE</span>
+                                  <span className={this.props.selectedFilter && this.props.selectedFilter == 'SHOW_COMPLETED' ? `badge badge-secondary filter-btn filter-active` : 'badge badge-secondary filter-btn'} onClick={(e)=> this.props.setTodoListFilter('SHOW_COMPLETED')}>COMPLETED</span>
+                              </div>
+                          </Col>
+                        </Row>
                     </Col>
                 </Row>
             </div>
