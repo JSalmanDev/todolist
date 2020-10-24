@@ -28,3 +28,19 @@ export const editTodo = (id, title) => {
         id: id
     }
 };
+
+export const todolistFilter  = filter => ({
+    type: SET_TODOLIST_FILTER,
+    filter
+});
+
+export const setTodoListFilter = filter => ({
+    type: SET_TODOLIST_FILTER,
+    filter
+})
+
+export const todolistFilters = {
+    SHOW_ALL: SHOW_ALL,
+    SHOW_COMPLETED: SHOW_COMPLETED,
+    SHOW_ACTIVE: SHOW_ACTIVE
+};
