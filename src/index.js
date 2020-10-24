@@ -21,7 +21,7 @@ const store = (window.devToolsExtension ? window.devToolsExtension () (createSto
 ReactDOM.render(
   <>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="/todolist">
         <App />
       </BrowserRouter>
     </Provider>
