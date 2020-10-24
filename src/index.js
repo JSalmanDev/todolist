@@ -8,10 +8,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Provider } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 import todosActionReducer from './store/reducers/TodosReducer';
+import todolistFilter from './store/reducers/TodosFilterReducer';
 import { BrowserRouter } from 'react-router-dom';
 
 const creducer = combineReducers({
-  todoslist: todosActionReducer
+  todoslist: todosActionReducer,
+  todolistFilter
 })
 
 const store = (window.devToolsExtension ? window.devToolsExtension () (createStore) : createStore) (creducer);
